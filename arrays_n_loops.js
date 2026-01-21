@@ -1,16 +1,16 @@
 // 1.
-// const testerPositions = [
-//     "Quality Assurance Engineer",
-//     "Software Tester",
-//     "Test Automation Engineer",
-//     "Quality Analyst",
-//     "QA Tester",
-//     "Test Engineer",
-//     "Quality Control Analyst",
-// ];
+const testerPositions = [
+    "Quality Assurance Engineer",
+    "Software Tester",
+    "Test Automation Engineer",
+    "Quality Analyst",
+    "QA Tester",
+    "Test Engineer",
+    "Quality Control Analyst",
+];
 
-// testerPositions.push("SDET", "Lead SDET");
-// console.log(testerPositions);
+testerPositions.push("SDET", "Lead SDET");
+console.log(testerPositions);
 
 // 4.
 const arr = ['(', ')', '(', ')', '{', '(', '}', ')', 2, 'a'];
