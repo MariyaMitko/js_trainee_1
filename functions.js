@@ -145,3 +145,33 @@ console.log(sum([1, 2, 3, "4", 100]));
 const longStrings = (arrOfStrings) => arrOfStrings.flat().filter((elem) => elem.length > 5);
 console.log(longStrings(['apple', 'strawberry', ['banana', 'mandarin'], 'grape', ['orange', 'pear']]));
 
+    // LeetCode
+// Filter elements from arry
+let filter = function(arr, fn) {
+    return arr.reduce((acc, el, i) => {
+        if (fn(el, i)) acc.push(el)
+        return acc;
+    }, []);
+} 
+console.log(filter([1,2,3], function firstIndex(n, i) { return i === 0; }));
+
+// Simplifu Path
+const simplifyPath = function(path) {
+    let parts = path.split("/");
+    let str = [];
+    for (let part of parts) {
+        if (part === "." || part === "") {
+            continue;
+        }
+        if (part === "..") {
+            if (str.length > 0) {
+                str.pop();
+            }
+        }
+        else {
+            str.push(part);
+        }
+    }
+    return "/"+str.join("/")
+}
+console.log(simplifyPath("/home/user/Documents/../Pictures"));
