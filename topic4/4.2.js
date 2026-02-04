@@ -3,7 +3,7 @@ let i = 1;
 while (i <= 9) {
     let line = "";
     let space = 0;
-    while (space < (9 - i) * 2) {
+    while (space < (9 - i)) {
         line += " ";
         space++;
     }
@@ -48,7 +48,7 @@ while (i >= 1) {
     let line = "";
 
     let space = 0;
-    while (space < (9 - i) * 2) {
+    while (space < (9 - i)) {
         line += " ";
         space++;
     }

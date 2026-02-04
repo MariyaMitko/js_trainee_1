@@ -3,15 +3,15 @@ let i = 1;
 
 while (i <= n) {
     let line = "";
-    let value = i;
     let j = 0;
+    let value = i;
 
     while (j < i) {
         line += value + " ";
-        value += (n - j);
+        value += (n - j - 1);
         j++;
     }
 
-    console.log(line);
+    console.log(line.trim());
     i++;
 }
