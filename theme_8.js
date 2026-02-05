@@ -179,14 +179,20 @@ class Student extends Person {
 
 // класс для всех, кто получает ЗП
 class Employee extends Person {
+    #baseSalary;
+
     constructor(name, age, gender, baseSalary, hours) {
         super(name, age, gender);
-        this.baseSalary = baseSalary;
+        this.#baseSalary = baseSalary;
         this.hours = hours;
+    }
+
+    get baseSalary() {
+        return this.#baseSalary;
     }
     
     calculateTotalPay() {
-        return this.baseSalary;
+        return this.#baseSalary;
     }
 }
 

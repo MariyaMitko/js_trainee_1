@@ -101,30 +101,59 @@ class Book {
     }
 }
 
-const library = [
-    new Book("SK001", "Сияние", "Стивен Кинг", 1977, "Horror", 447, 5),
-    new Book("SK002", "Оно", "Стивен Кинг", 1986, "Horror", 1138, 5),
-    new Book("MT001", "Приключения Тома Сойера", "Марк Твен", 1876, "Adventure", 274, 5),
-    new Book("MT002", "Принц и нищий", "Марк Твен", 1881, "Historical", 192, 4),
-    new Book("AP001", "Евгений Онегин", "Александр Пушкин", 1833, "Novel", 224, 5),
-    new Book("AP002", "Капитанская дочка", "Александр Пушкин", 1836, "Historical", 200, 5)
-];
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    // метод добавления книг в библиотеку
+    addBook(book) {
+        this.books.push(book);
+    }
+
+    // a. метод для вывода названий всех книг
+    printAllTitles() {
+        console.log("--- Список всех книг ---");
+        this.books.forEach(book => console.log(book.title));
+    }
+
+    // b. метод для поиска популярной книги каждого автора
+    printBestBookByAuthor(author) {
+        const authorBooks = this.books.filter(book => book.author === author);
+        
+        if (authorBooks.length > 0) {
+            const sortedBooks = authorBooks.sort((a, b) => b.popularity - a.popularity);
+            const [bestBook] = sortedBooks;
+            console.log(`${author}: "${bestBook.title}" (Рейтинг: ${bestBook.popularity})`);
+        } else {
+            console.log(`Книги автора ${author} не найдены.`);
+        }
+    }
+
+    // c. метод сортировки книг по году выпуска
+    printSortedByYear() {
+        console.log("\n--- Книги по году выпуска ---");
+        const sorted = this.books.slice().sort((a, b) => b.year - a.year);
+        sorted.forEach(book => console.log(`${book.year}: ${book.title}`));
+    }
+}
+
+const myLibrary = new Library();
+
+myLibrary.addBook(new Book("SK001", "Сияние", "Стивен Кинг", 1977, "Horror", 447, 5));
+myLibrary.addBook(new Book("SK002", "Оно", "Стивен Кинг", 1986, "Horror", 1138, 5));
+myLibrary.addBook(new Book("MT001", "Приключения Тома Сойера", "Марк Твен", 1876, "Adventure", 274, 5));
+myLibrary.addBook(new Book("MT002", "Принц и нищий", "Марк Твен", 1881, "Historical", 192, 4));
+myLibrary.addBook(new Book("AP001", "Евгений Онегин", "Александр Пушкин", 1833, "Novel", 224, 5));
+myLibrary.addBook(new Book("AP002", "Капитанская дочка", "Александр Пушкин", 1836, "Historical", 200, 5));
 
 // a.
-library.forEach(book => console.log(book.title));
+myLibrary.printAllTitles(); 
 
 // b.
+console.log("\n--- Лучшие книги авторов ---");
 const authors = ["Стивен Кинг", "Марк Твен", "Александр Пушкин"];
-
-authors.forEach(author => {
-    const authorBooks = library.filter(book => book.author == author);
-    if (authorBooks.length > 0) {
-        const sortedBooks = authorBooks.sort((a, b) => b.popularity - a.popularity);
-        const bestBook = sortedBooks[0];
-        console.log(`${author}: "${bestBook.title}" (Рейтинг: ${bestBook.popularity})`);
-    }
-});
+authors.forEach(authorName => myLibrary.printBestBookByAuthor(authorName));
 
 // c.
-const sortedByYear = library.slice().sort((a,b) => b.year - a.year);
-sortedByYear.forEach(book => console.log(`${book.year}: ${book.title}`));
+myLibrary.printSortedByYear();
