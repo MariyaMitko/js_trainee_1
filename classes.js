@@ -43,29 +43,36 @@ class Employee {
     }
 
     get age() {
-        return this.age;
+        return this._age;
     }
 
     get position() {
-        return this.position;
+        return this._position;
     }
 
     get salary() {
-        return this.salary;
+        return this._salary;
     }
 
     set age(number) {
-        this.age = number;
+        this._age = number;
     }
 
     set position(role) {
-        this.position = role;
+        this._position = role;
     }
 
     set salary(number) {
-        this.salary = number;
+        this._salary = number;
     }    
 }
+
+const emplyee = new Employee("Alex", 29, "AQA Engineer", 1000);
+console.log(emplyee.age);
+emplyee.age = 40;
+console.log(emplyee.age);
+console.log(emplyee.salary);
+console.log(emplyee._salary);
 
 // 4
 class Person {
@@ -89,58 +96,52 @@ console.log(new Person().sayFullName());
 Person.greetExtraTerrestrials("Martians");
 
 // 5
+class Book {
+    constructor(isbn, title, author, year, genre, pages, rating, firstSentence) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.pages = pages;
+        this.rating = rating;
+        this.firstSentence = firstSentence;
+    }
+}
+
 class Library {
-    static library = [
-    // Кинг
-    { isbn: 1, title: "Сияние", author: "Стивен Кинг", year: 1977, genre: "Ужасы", pages: 600, rating: 4, firstSentence: "Джек Торранс думал: «Мелкий, заносчивый ублюдок»." },
-    { isbn: 2, title: "Оно", author: "Стивен Кинг", year: 1986, genre: "Ужасы", pages: 1248, rating: 5, firstSentence: "Ужас, который не кончался еще добрых двадцать восемь лет, начался с кораблика из газетного листа." },
-    { isbn: 3, title: "Мизери", author: "Стивен Кинг", year: 1987, genre: "Психологический триллер", pages: 384, rating: 2, firstSentence: "Сначала были звуки боли." },
-    { isbn: 4, title: "Зеленая миля", author: "Стивен Кинг", year: 1996, genre: "Драма", pages: 480, rating: 5, firstSentence: "Это случилось в 1932 году, когда тюрьма штата еще находилась в Колдуин-Маунтин." },
-    { isbn: 5, title: "Кэрри", author: "Стивен Кинг", year: 1974, genre: "Мистика", pages: 320, rating: 1, firstSentence: "Никто не видел, как в Кэрри швырнули первый камень." },
-
-    // Твен
-    { isbn: 6, title: "Приключения Тома Сойера", author: "Марк Твен", year: 1876, genre: "Приключения", pages: 320, rating: 3, firstSentence: "— Том! Нет ответа." },
-    { isbn: 7, title: "Приключения Гекльберри Финна", author: "Марк Твен", year: 1884, genre: "Приключения", pages: 448, rating: 4, firstSentence: "Вы про меня ничего не знаете, если не читали книжки под названием «Приключения Тома Сойера»." },
-    { isbn: 8, title: "Принц и нищий", author: "Марк Твен", year: 1881, genre: "Исторический роман", pages: 256, rating: 5, firstSentence: "В старом городе Лондоне в один осенний день родился мальчик в бедной семье Кенти." },
-    { isbn: 9, title: "Янки из Коннектикута при дворе короля Артура", author: "Марк Твен", year: 1889, genre: "Сатира", pages: 416, rating: 2, firstSentence: "Я американец, родился и вырос в Хартфорде." },
-    { isbn: 10, title: "Таинственный незнакомец", author: "Марк Твен", year: 1916, genre: "Философская сказка", pages: 192, rating: 1, firstSentence: "Это было в 1590 году, зимой." },
-
-    // Пушкин
-    { isbn: 11, title: "Евгений Онегин", author: "Александр Пушкин", year: 1833, genre: "Роман в стихах", pages: 224, rating: 5, firstSentence: "Мой дядя самых честных правил, когда не в шутку занемог..." },
-    { isbn: 12, title: "Капитанская дочка", author: "Александр Пушкин", year: 1836, genre: "Исторический роман", pages: 288, rating: 3, firstSentence: "Отец мой Андрей Петрович Гринев в молодости своей служил при графе Минихе." },
-    { isbn: 13, title: "Пиковая дама", author: "Александр Пушкин", year: 1834, genre: "Повесть", pages: 96, rating: 2, firstSentence: "Однажды играли в карты у конногвардейца Нарумова." },
-    { isbn: 14, title: "Руслан и Людмила", author: "Александр Пушкин", year: 1820, genre: "Поэма", pages: 160, rating: 5, firstSentence: "У лукоморья дуб зеленый; златая цепь на дубе том..." },
-    { isbn: 15, title: "Дубровский", author: "Александр Пушкин", year: 1841, genre: "Роман", pages: 192, rating: 4, firstSentence: "Несколько лет тому назад в одном из своих поместий жил старинный русский барин Кирила Петрович Троекуров." }
+    static books = [
+        new Book(1, "Сияние", "Стивен Кинг", 1977, "Ужасы", 600, 4, "Джеку снился отель."),
+        new Book(2, "Оно", "Стивен Кинг", 1986, "Ужасы", 1248, 5, "Кораблик плыл по канаве."),
+        new Book(6, "Том Сойер", "Марк Твен", 1876, "Приключения", 320, 3, "— Том!"),
+        new Book(8, "Принц и нищий", "Марк Твен", 1881, "Исторический роман", 256, 5, "Родился мальчик."),
+        new Book(11, "Евгений Онегин", "Александр Пушкин", 1833, "Роман в стихах", 224, 5, "Мой дядя..."),
+        new Book(12, "Капитанская дочка", "Александр Пушкин", 1836, "Исторический роман", 288, 3, "Отец мой...")
     ];
 
     static getAllTitles() {
-        for (const el of this.library) {
-            console.log(el.title);
-        }
+        this.books.forEach(b => console.log(b.title));
     }
 
     static getMostPopularBooks() {
-        const popularBook = this.library.reduce((tempObj, currObj) => {
-            let author = currObj.author;
-
-            if (!tempObj[author] || currObj.rating > tempObj[author].rating) {
-                tempObj[author] = { 
-                    title: currObj.title, 
-                    rating: currObj.rating 
-                }
+        const popular = this.books.reduce((acc, book) => {
+            if (!acc[book.author] || book.rating > acc[book.author].rating) {
+                acc[book.author] = { title: book.title, rating: book.rating };
             }
-                return tempObj;
-        }, {})
+            return acc;
+        }, {});
 
-        for (const key in popularBook) {
-            console.log(`${key}: самая популярная книга — "${popularBook[key].title}" (Рейтинг: ${popularBook[key].rating})`);
+        for (const author in popular) {
+            const info = popular[author];
+            console.log(`${author}: лучшая — "${info.title}" (${info.rating})`);
         }
     }
 
     static sortLibrary() {
-        console.log(this.library.sort((a,b) => a.year - b.year));
+        console.log([...this.books].sort((a, b) => a.year - b.year));
     }
 }
+
 Library.getAllTitles();
 Library.getMostPopularBooks();
 Library.sortLibrary();

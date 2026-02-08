@@ -1,21 +1,25 @@
 // 1
 class Car {
-    static model = "BMW";
-    static color = "Yellow";
-    static year = 2015;
+    constructor(model, color, year) {
+        this.model = model;
+        this.color = color;
+        this.year = year;
+    }
 }
 
 class Zhiguli extends Car{
-    static placeOfProduction = "Тольятти";
-    static maxSpeed = 120;
-
-    static info() {
-        for (const key in this) {
-            console.log(key);
-        }
+    placeOfProduction = "Тольятти";
+    maxSpeed = 120;
+    constructor(model, color, year) {
+        super(model, color, year);
     }
 }
-Zhiguli.info()
+
+const zhiguli = new Zhiguli("ВАЗ 2106", "White", 1989);
+
+for (const key in zhiguli) {
+    console.log(zhiguli[key]);
+}
 
 // 2
 class Shape {
@@ -56,10 +60,10 @@ class Human {
     }
 }
 const kate = new Human("Катя", 21, "Люблю кататься на лижах");
-kate.info();
+kate.info(); // "Меня зовут Катя, мне 21. Люблю кататься на лижах"
 
 const yura = new Human("Юра", 24, "Разбираюсь в машинах");
-yura.info();
+yura.info(); // "Меня зовут Юра, мне 24. Разбираюсь в машинах"
 
 // 4
 class Food {
@@ -81,7 +85,10 @@ class Food {
         }
     }
 }
-Food.getFood("wet", 2, "Royal Chanin");
+Food.getFood(); // "All dogs love to eat!"
+Food.getFood("dry"); // "Shepherd Masha eats dry food."
+Food.getFood("wet", 4); // "Poodle Demi eats 4 bowls a day of wet food."
+Food.getFood("wet", 2, "Royal Chanin"); // "Corgi Henry eats 2 bowls a day of wet food by Royal Chanin."
 
 // 5
 class User {
@@ -120,20 +127,21 @@ let arr = [new User("Jhon", 12345), new Admin("Alex", "qwerty")];
 
 // 6
 class Person {
+    role = "unknown";
+
     constructor(name, age, gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
-    getInfo() {
+    getRole() {
         console.log(`${this.name}, Роль: ${this.role}`);
         
     }
 }
 
 class Student extends Person{
-    course = 1;
     role = "student";
 
     constructor(name, age, gender, course, major, gpa) {
@@ -147,11 +155,10 @@ class Student extends Person{
 class Teacher extends Person{
     role = "teacher";
     hours = 44;
-    _salary;
+    _salary = 800;
 
-    constructor(name, age, gender, salary) {
+    constructor(name, age, gender) {
         super(name, age, gender);
-        this._salary = salary;
     }
 
     get salary() {
@@ -162,12 +169,16 @@ class Teacher extends Person{
 class Dean extends Teacher{
     role = "dean";
 
-    constructor(name, age, gender, teacherSalary) {
-        super(name, age, gender, 2 * teacherSalary);
+    constructor(name, age, gender) {
+        super(name, age, gender);
     }
-    
+
+    get salary() {
+        return super.salary * 2;
+    }
+
     yearBonus() {
-        return this._salary;
+        return this.salary;
     }
 }
 
@@ -175,20 +186,24 @@ class Principal extends Dean{
     role = "principal";
     hours = 42;
 
-    constructor(name, age, gender, deanSalary) {
-        super(name, age, gender, 1.5 * deanSalary);
+    constructor(name, age, gender) {
+        super(name, age, gender);
+    }
+
+    get salary() {
+        return super.salary * 1.5;
     }
 
     yearBonus() {
-        return this._salary * 2;
+        return this.salary * 2;
     }
 }
 
-const biologyTeacher = new Teacher("Светлана Павловна", 38, "Ж", 50000);
+const biologyTeacher = new Teacher("Светлана Павловна", 38, "Ж");
 
-const scienceDean = new Dean("Николай Борисович", 45, "М", biologyTeacher.salary);
+const scienceDean = new Dean("Николай Борисович", 45, "М");
 
-const schoolPrincipal = new Principal("Виктор Михайлович", 58, "М", scienceDean.salary);
+const schoolPrincipal = new Principal("Виктор Михайлович", 58, "М");
 
  const school = [
     new Student("Алексей", 19, "М", 1, "Информатика", 3.8),
@@ -200,17 +215,15 @@ const schoolPrincipal = new Principal("Виктор Михайлович", 58, "
     schoolPrincipal
 ];
 
-let valedictorian = school.reduce((tempObj, currObj) => {
-    if (currObj.role === "student" && currObj.gpa > tempObj.gpa) tempObj = currObj;
-    return tempObj
-}, {gpa: 1});
+let valedictorian = school.filter(person => person.role === "student").reduce((best, curr) => (curr.gpa > best.gpa ? curr : best));
 
 console.log("Лучший студент школы: " + valedictorian.name);
 
 for (const person of school) {
-    person.getInfo();
+    person.getRole();
     if (person.role === "principal") {
         console.log(`ЗП: ${person.salary}`);
     }
 }
 
+console.log(schoolPrincipal.yearBonus());
