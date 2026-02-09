@@ -18,3 +18,13 @@ class Zhiguli extends Car {
         return `${this.getInfo()}, Место выпуска: ${this.place}, Макс. скорость: ${this.maxSpeed} км/ч`;
     }
 }
+
+let zhiguli = new Zhiguli(
+    "ВАЗ-2101",
+    "белый",
+    1980,
+    "СССР",
+    140
+);
+
+console.log(zhiguli.getAllInfo());
