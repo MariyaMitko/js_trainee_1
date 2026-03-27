@@ -1,0 +1,11 @@
+console.log(10, 10 > 10 && 10 < 20);
+console.log(11, 11 > 10 && 11 < 20);
+console.log(12, 12 > 10 && 12 < 20);
+console.log(13, 13 > 10 && 13 < 20);
+console.log(14, 14 > 10 && 14 < 20);
+console.log(15, 15 > 10 && 15 < 20);
+console.log(16, 16 > 10 && 16 < 20);
+console.log(17, 17 > 10 && 17 < 20);
+console.log(18, 18 > 10 && 18 < 20);
+console.log(19, 19 > 10 && 19 < 20);
+console.log(20, 20 > 10 && 20 < 20);
